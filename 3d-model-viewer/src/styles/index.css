@@ -1,0 +1,36 @@
+body {
+    background-color: #455A64;
+}
+
+#root {
+    display: flex;
+    flex-wrap: wrap;
+
+    height: 100vh;
+    width: 100%;
+}
+
+.choose-model-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+
+    height: 50px;
+    width: 100%;
+}
+
+.display-model-placeholder {
+    display: flex;
+
+    height: calc(100vh - 60px);
+    width: 100%;
+    position: absolute;
+    top: 60px;
+}
+
+model-viewer {
+    background-color: #455A64;
+    height: 100%;
+    width: 100%;
+}

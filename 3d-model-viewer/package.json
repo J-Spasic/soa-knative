@@ -1,0 +1,15 @@
+{
+  "name": "3d-model-viewer",
+  "version": "1.0.0",
+  "description": "Simple 3D Model Viewer.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "serve"
+  },
+  "author": "Jovana Spasić",
+  "devDependencies": {
+    "serve": "^13.0.2",
+    "typescript": "^4.6.4"
+  }
+}
