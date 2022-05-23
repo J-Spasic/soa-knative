@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: 3d-model-api
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: docker.io/spasicj/3d-model-api
+          env:
+            - name: TARGET
+              value: "Simple Node.js Express Web API for 3D models retrieval."
