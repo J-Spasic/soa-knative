@@ -35,7 +35,7 @@ app.get('/3dModels/:modelName', async (req: Request, res: Response): Promise<voi
 
     const modelName: string = req.params.modelName;
 
-    const resourceUri: string = `${protocol}://${host}:${port}/assets/${modelName}/scene.gltf`;
+    const resourceUri: string = `${protocol}://${host}:${port}/${modelName}/scene.gltf`;
     res.send(resourceUri);
 });
 
