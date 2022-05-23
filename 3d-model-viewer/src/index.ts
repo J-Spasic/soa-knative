@@ -1,3 +1,5 @@
+const mainURL: string = 'http://animated-model-api.default.127.0.0.1.sslip.io';
+
 document.body.onload = async (): Promise<void> => {
     const rootDivElement: HTMLDivElement = document.getElementById('root') as HTMLDivElement;
 
@@ -20,20 +22,19 @@ document.body.onload = async (): Promise<void> => {
     modelSelectElement.setAttribute('style', 'max-width: 200px;');
     controlsDivElement.appendChild(modelSelectElement);
 
-    await fetch('http://127.0.0.1:8080/3dModels', {
+    await fetch(`${mainURL}/3dModels`, {
         method: 'GET',
         mode: 'cors'
-    }).then((response: Response): Promise<string[]> => {
-        return response.json();
-    }).then((availableModels: string[]): void => {
-        availableModels.forEach((model: string) => {
-            const modelOptionElement: HTMLOptionElement = document.createElement('option');
-            modelOptionElement.setAttribute('key', model);
-            modelOptionElement.setAttribute('value', model);
-            modelOptionElement.innerHTML = model;
-            modelSelectElement.add(modelOptionElement);
+    }).then((response: Response): Promise<string[]> => response.json())
+        .then((availableModels: string[]): void => {
+            availableModels.forEach((model: string) => {
+                const modelOptionElement: HTMLOptionElement = document.createElement('option');
+                modelOptionElement.setAttribute('key', model);
+                modelOptionElement.setAttribute('value', model);
+                modelOptionElement.innerHTML = model;
+                modelSelectElement.add(modelOptionElement);
+            });
         });
-    });
 
     const displayModelButtonElement: HTMLButtonElement = document.createElement('button');
     displayModelButtonElement.classList.add('btn', 'btn-primary');
@@ -43,14 +44,13 @@ document.body.onload = async (): Promise<void> => {
 
         const modelName: string = (modelSelectElement.selectedOptions.item(0) as HTMLOptionElement)
             .getAttribute('key') as string;
-        await fetch(`http://127.0.0.1:8080/3dModels/${modelName}`, {
+        await fetch(`${mainURL}/3dModels/${modelName}`, {
             method: 'GET',
             mode: 'cors'
-        }).then((response: Response): Promise<string> => {
-            return response.text();
-        }).then((resourceUri: string): void => {
-            modelViewerElement.setAttribute('src', resourceUri);
-        });
+        }).then((response: Response): Promise<string> => response.text())
+            .then((resourceUri: string): void => {
+                modelViewerElement.setAttribute('src', resourceUri);
+            });
     };
     controlsDivElement.appendChild(displayModelButtonElement);
 
