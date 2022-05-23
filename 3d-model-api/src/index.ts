@@ -31,11 +31,12 @@ app.get('/3dModels', async (req: Request, res: Response): Promise<void> => {
 app.get('/3dModels/:modelName', async (req: Request, res: Response): Promise<void> => {
     const protocol: string = req.protocol;
     const host: string = req.hostname;
-    const port: number = parseInt(process.env.PORT as string, 10) || PORT;
+    // port is used only outside the Docker environment.
+    // const port: number = parseInt(process.env.PORT as string, 10) || PORT;
 
     const modelName: string = req.params.modelName;
 
-    const resourceUri: string = `${protocol}://${host}:${port}/${modelName}/scene.gltf`;
+    const resourceUri: string = `${protocol}://${host}/${modelName}/scene.gltf`;
     res.send(resourceUri);
 });
 
