@@ -1,9 +1,11 @@
 import express, { Express, Request, Response } from 'express';
+import cors from 'cors';
 import fs from 'fs';
 
 const app: Express = express();
 const PORT: number = parseInt(process.env.PORT as string, 10) || 8080;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/3dModels', async (req: Request, res: Response): Promise<void> => {
