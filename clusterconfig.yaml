@@ -1,0 +1,11 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraPortMappings:
+    ## Expose port 31380 of the node to port 80 on the host.
+  - containerPort: 31380
+    hostPort: 80
+    ## Expose port 31443 of the node to port 443 on the host.
+  - containerPort: 31443
+    hostPort: 443
